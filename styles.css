@@ -80,3 +80,68 @@ a:hover {
     height: auto;
     border-radius: 8px;
 }
+
+/* Publication rows: poster thumbnail on the left, text on the right */
+.research ul li.pub {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.pub-thumb {
+    width: 120px;       /* fixed column so text lines up even when there's no poster */
+    flex-shrink: 0;
+}
+
+.pub-text {
+    flex: 1;
+}
+
+.poster-thumb {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: zoom-in;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.poster-thumb:hover {
+    transform: scale(1.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Full-screen overlay for an enlarged poster */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    overflow: auto;
+    cursor: zoom-out;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox img {
+    max-width: 40vw;        /* half the screen width; leaves room to click outside to close */
+    height: auto;
+    border-radius: 4px;
+    cursor: default;
+}
+
+@media (max-width: 600px) {
+    .pub-thumb {
+        width: 80px;
+    }
+
+    .lightbox img {
+        max-width: 90vw;    /* phones: half width would be too small to read */
+    }
+}
